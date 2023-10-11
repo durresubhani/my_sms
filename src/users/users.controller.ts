@@ -11,9 +11,10 @@ export class UsersController {
     constructor(private usersService:UsersService){}
     
     @Post('/signup')
-    createUser(@Body() body:CreateUserDto){
+   async createUser(@Body() body:CreateUserDto){
       
-        this.usersService.create(body.name,body.address,body.email,body.password,body.phone_number)
+       const user=await this.usersService.create(body.name,body.address,body.email,body.password,body.phone_number)
+        return user;
     }
     @Get('/:id')
     // @UseInterceptors(ClassSerializerInterceptor)
@@ -24,19 +25,21 @@ export class UsersController {
         {
             throw new NotFoundException('User is not found')
         }
-        return user
+        return user;
     }
     @Get()
-    findAllUser(@Query('email') email:string)
+    async findAllUser(@Query('email') email:string)
     {
-        this.usersService.find(email)
+       const user= await this.usersService.find(email)
+       return user;
 
     }
 
     @Delete('/:id')
-    removeUser(@Param('id') id:string)
+   async removeUser(@Param('id') id:string)
     {
-        this.usersService.remove(parseInt(id));
+       const user= await this.usersService.remove(parseInt(id));
+       return user;
     }
 
     @Patch('/:id')
