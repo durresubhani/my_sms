@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 
 import { Body,Controller, Post,Get,Patch,Delete,Param,Query,NotFoundException,UseInterceptors,ClassSerializerInterceptor} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -5,15 +6,18 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './user.entity';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { AuthService } from './auth.service';
 @Controller('auth')
 export class UsersController {
 
-    constructor(private usersService:UsersService){}
+    constructor(private usersService:UsersService,
+        private authService:AuthService){}
     
     @Post('/signup')
+    
    async createUser(@Body() body:CreateUserDto){
       
-       const user=await this.usersService.create(body.name,body.address,body.email,body.password,body.phone_number)
+       const user=await this.authService.create(body.name,body.address,body.email,body.password,body.phone_number)
         return user;
     }
     @Get('/:id')

@@ -1,17 +1,17 @@
-import { IsEmail,IsString } from "class-validator";
+import { Exclude,Expose } from "class-transformer";
 export class CreateUserDto{
-    @IsString()
+    @Expose()
     name:string;
    
-    @IsString()
+    @Expose()
     address:string;
    
-    @IsEmail()
+    @Expose()
     email:string;
 
-    @IsString()
+    @Exclude()
     password:string;
      
-    @IsString()
+    @Expose()
     phone_number:string;
 }
