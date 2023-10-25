@@ -1,4 +1,5 @@
-import {Entity,Column,PrimaryGeneratedColumn} from 'typeorm'
+import { Product } from './../products/product.entity';
+import {Entity,Column,PrimaryGeneratedColumn,OneToMany} from 'typeorm'
 @Entity()
 export class User{
     @PrimaryGeneratedColumn()
@@ -13,4 +14,9 @@ export class User{
     password:string;
     @Column()
     phone_number:string
+    @OneToMany(()=>Product,(product)=>product.id)
+    
+
+
+
 }
