@@ -1,5 +1,5 @@
 import { IsDate, IsNumber,IsOptional,IsString } from "class-validator";
-export class CreateProductDto{
+export class CreateOrderDto{
     
     @IsString()
     product_name:string;
