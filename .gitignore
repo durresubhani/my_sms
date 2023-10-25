@@ -36,6 +36,5 @@ lerna-debug.log*
 
 #env file
 *.env
-*.env.example
 *.env.local
 *.env.staging
