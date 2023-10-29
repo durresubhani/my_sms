@@ -23,7 +23,7 @@ export class UsersController {
       const user= await this.authService.signup(body.name,body.address,body.email,body.password,body.phone_number)
         // session.userId=user.id;
         // session.userId=user.id;
-        console.log(session)
+        console.log(session.userId=user.name)
         return user;
    
     }
@@ -32,7 +32,7 @@ export class UsersController {
 
     @Post('/signin')
     async signin(@Body() body:CreateSigninDto , @Session() session:any){
-        const user= await this.authService.create(body.email,body.password)
+        const user= await this.authService.signin(body.email,body.password)
         session.userId = user.id;
         return user;
     }
