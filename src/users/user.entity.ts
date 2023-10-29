@@ -15,7 +15,7 @@ export class User{
     @Column()
     phone_number:string
     @OneToMany(()=>Product,(product)=>product.id)
-    
+    product:Product[];
 
 
 

@@ -1,5 +1,5 @@
 import { Exclude,Expose } from "class-transformer";
-export class CreateUserDto{
+export class UserDto{
     @Expose()
     name:string;
    
