@@ -1,4 +1,6 @@
-import {Entity,Column,PrimaryGeneratedColumn} from 'typeorm'
+import { Product } from 'src/products/product.entity';
+import {Entity,Column,PrimaryGeneratedColumn,ManyToOne} from 'typeorm';
+import { User } from 'src/users/user.entity';
 @Entity()
 export class Order{
     @PrimaryGeneratedColumn()
@@ -13,4 +15,8 @@ export class Order{
     items:number;
     @Column()
     phone_number:number;
+    @ManyToOne(()=>Product,(product)=>product.id)
+    product:Product;
+    @ManyToOne(()=>User,(user)=>user.id)
+    user:User;
 }

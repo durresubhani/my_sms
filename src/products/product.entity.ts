@@ -1,5 +1,7 @@
-import {Entity,Column,PrimaryGeneratedColumn, ManyToOne} from 'typeorm'
+import {Entity,Column,PrimaryGeneratedColumn, ManyToOne, OneToMany} from 'typeorm'
 import { User } from 'src/users/user.entity';
+import { Category } from 'src/category/category.entity';
+import { Order } from 'src/order/order.entity';
 @Entity()
 export class Product{
     @PrimaryGeneratedColumn()
@@ -7,13 +9,20 @@ export class Product{
     @Column()
     name:string;
     @Column()
-    category:string;
+    categoryId:number;
     @Column()
     price:number;
     @Column()
     retail:number;
     @Column()
     quantity:number;
-    @ManyToOne(()=>User,(user)=>user.id)
-    user;User;
+
+    @OneToMany(()=>User,(user)=>user.id)
+    user:User[];
+
+    @OneToMany(()=>Category,(category)=>category.id)
+    category:Category[];
+
+    @OneToMany(()=>Order,(order)=>order.id)
+    order:Order[];
 }

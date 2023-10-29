@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { OrdersController } from './products.controller';
+import { OrdersController } from './orders.controller';
 import { OrdersService } from './orders.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Order } from './order.entity';
@@ -9,4 +9,4 @@ import { Order } from './order.entity';
   controllers: [OrdersController],
   providers: [OrdersService]
 })
-export class ProductsModule {}
+export class OrdersModule {}

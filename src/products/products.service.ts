@@ -1,6 +1,5 @@
 import { Product } from './product.entity';
 
-
 import { Injectable } from '@nestjs/common';
 import {Repository} from 'typeorm'
 import {InjectRepository} from '@nestjs/typeorm'
@@ -9,8 +8,8 @@ import {InjectRepository} from '@nestjs/typeorm'
 export class ProductsService {
     constructor(@InjectRepository(Product) private repo:Repository<Product>){}
 
-    create(name:string,category:string,price:number,retail:number,quantity:number){
-        const product=this.repo.create({name,category,price,retail,quantity})
+    create(name:string,categoryId:number,price:number,retail:number,quantity:number){
+        const product=this.repo.create({name,categoryId,price,retail,quantity})
 
         return this.repo.save(product)
     }

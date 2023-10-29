@@ -10,7 +10,7 @@ export class ProductsController {
     @Post('/addProduct')
     async createProduct(@Body() body:CreateProductDto){
       
-        const product=await this.productsService.create(body.name,body.category,body.price,body.retail,body.quantity)
+        const product=await this.productsService.create(body.name,body.categoryId,body.price,body.retail,body.quantity)
          return product;
      }
      @Get('/showAllProducts')

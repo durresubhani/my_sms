@@ -1,3 +1,4 @@
+import { IsEmail } from 'class-validator';
 import { Injectable } from '@nestjs/common';
 import {Repository} from 'typeorm'
 import {InjectRepository} from '@nestjs/typeorm'
@@ -9,18 +10,18 @@ import { throwError } from 'rxjs';
 export class UsersService {
     constructor(@InjectRepository(User) private repo:Repository<User>){}
 
-    create(name:string,address:string,email:string,password:string,phone_number:string){
-        const user=this.repo.create({name,address,email,password,phone_number})
-
+    async create(name:string,address:string,email:string,password:string,phone_number:string){
+        const user= this.repo.create({name,address,email,password,phone_number})
+        // console.log(this.repo)
         return this.repo.save(user)
     }
-    findOne(id:number){
-        return this.repo.findOneBy({id})
-
+    async findOne( id : number ){
+        const user= await this.repo.findOneBy({id});
+        return user;
     }
-    find(email:string)
-    {
-        return this.repo.find({where:{email}})
+    async find(email:string) {
+        const user=this.repo.find({where:{email}});
+        return user;
     }
     async update(id:number, attrs:Partial<User>)
     {
